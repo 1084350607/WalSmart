@@ -2,7 +2,7 @@ import React from 'react'
 import './App.css'
 import Home from './pages/home'
 // 全局导入antd
-import 'antd/dist/antd.less'
+import 'antd/dist/antd.css'
 
 function App() {
   return (
