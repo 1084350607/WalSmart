@@ -1,4 +1,5 @@
 import React from "react";
+import './goodsInfo.styl'
 
 // Component props
 interface goodsProp {
@@ -10,8 +11,8 @@ interface goodsProp {
 function GoodsInfo (prop: goodsProp) {
   return (
     <div className="goods_info">
-      <div>
-        <img src={prop?.img}></img>
+      <div className>
+        <div>{prop?.img}</div>
       </div>
       <div>
         {prop.title}

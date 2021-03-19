@@ -7,10 +7,12 @@
     "serve": "../../midway/Walsmart/node_modules/.bin/vite preview"
   },
   "dependencies": {
+    "@types/react-router-dom": "^5.1.7",
     "antd": "^4.13.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "stylus": "^0.54.8"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",

@@ -1,26 +1,30 @@
 import React from "react";
 import {Layout, Row, Col, Menu, Carousel} from 'antd';
+import GoodsInfo from "../../components/GoodsInfo";
 import "./home.styl"
-import GoodsInfo from "../components/GoodsInfo";
+import {
+  Link
+} from "react-router-dom"
+
+import logoUrl from '../../statics/logo.jpg'
+import fruitUrl from '../../statics/fruit/cjg.png'
 
 const { Header, Footer, Content } = Layout;
 
 // structure --- Modified
 const contentStyle = {
-  height: '160px',
+  height: '300px',
   color: '#fff',
   lineHeight: '160px',
   textAlign: 'center',
-  background: '#364d79',
 };
-
 
 function Home(){
   return(
     <Layout className="page-home">
       <header className="home_header_container">
         <Row>
-          <Col offset={3} className="header_item">请登录</Col>
+          <Col offset={3} className="header_item"><Link to="/login">请登录</Link></Col>
           <Col className="header_item">注册</Col>
           <Col className="header_item">微信登录</Col>
           <Col push={9} className="header_item">
@@ -39,6 +43,7 @@ function Home(){
       </header>
       <Content className="home_content_container">
         <nav className="content_nav_container">
+          <img src={logoUrl} style={{height: "100px", width: "300px", marginRight: "400px"}}/>
           <Menu mode="horizontal" style={{height: "100%", lineHeight: "inherit"}}>
             <Menu.Item key="index">
               首页
@@ -59,22 +64,16 @@ function Home(){
         </nav>
         <div className="content_Carousel">
           <Carousel autoplay>
-            <div>
-              <h3 style={contentStyle}>1</h3>
+            <div className="carousel_block1">
+              <h3 style={contentStyle}></h3>
             </div>
-            <div>
-              <h3 style={contentStyle}>2</h3>
-            </div>
-            <div>
-              <h3 style={contentStyle}>3</h3>
-            </div>
-            <div>
-              <h3 style={contentStyle}>4</h3>
+            <div className="carousel_block2">
+              <h3 style={contentStyle}></h3>
             </div>
           </Carousel>
         </div>
         <div>
-          <GoodsInfo title="ts" price={111}/>
+          <GoodsInfo title="ts" img={fruitUrl} price={111}/>
         </div>
       </Content>
       <Footer>ttt</Footer>
