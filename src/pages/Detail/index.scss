@@ -66,6 +66,8 @@
             display: flex;
             padding: 20px 10px;
             .goods-image{
+                cursor: pointer;
+                transition: all .5s;
                 width: 400px;
                 height: 400px;
                 // background-color: red;
@@ -74,6 +76,11 @@
                     width: 400px;
                     height: 400px;
                 }
+            }
+            .goods-image:hover{
+                box-shadow: 0 16px 32px 0 rgba(48, 55, 66, 0.15);
+                transform: translate(0,-5px);
+                transition-delay: 0s !important;
             }
             .goods-info{
                 .goods_name,.goods_price,.goods_count{

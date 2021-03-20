@@ -1,0 +1,49 @@
+.footer-box{
+    margin-top: 50px;
+    min-height: 400px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+    background-color: rgb(34, 34, 34);
+    display: flex;
+    justify-content:space-evenly;
+    .list{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        .list-title{
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        .list-item{
+            margin-bottom: 15px;
+        }
+    }
+}
+.shop-card{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 30px;
+    img{
+        width: 100px;
+        height: 90px;
+    }
+    .shop-name,.shop-price{
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .btn{
+        width: 100px;
+        height: 40px;
+        border-radius: 3px ;
+        background-color: orange;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    .btn:hover{
+        border: 3px solid rgb(236, 193, 113);
+    }
+}
