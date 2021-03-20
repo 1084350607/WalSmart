@@ -1,6 +1,7 @@
 import Login from './pages/Login/index'
 import Index from './pages/Index/index'
 import Regiser from './pages/Register'
+import Detail from './pages/Detail'
 const routes = [
   {
     path: "/",
@@ -13,6 +14,10 @@ const routes = [
   {
     path:'/register',
     component:Regiser
+  },
+  {
+    path:'/detail/:id',
+    component:Detail
   }
 ];
 

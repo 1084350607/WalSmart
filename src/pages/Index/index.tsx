@@ -8,7 +8,6 @@ import {
 
 import logoUrl from '../../statics/logo.jpg'
 import fruitUrl from '../../statics/fruit/cjg.png'
-import axios from '../../utils/axios'
 
 const { Header, Footer, Content } = Layout;
 
@@ -26,7 +25,7 @@ function Home(){
       <header className="home_header_container">
         <Row>
           <Col offset={3} className="header_item"><Link to="/login">请登录</Link></Col>
-          <Col className="header_item"><Link to="/register">注册</Link></Col>
+          <Col className="header_item"><Link t0="/register">注册</Link></Col>
           <Col className="header_item">微信登录</Col>
           <Col push={9} className="header_item">
             <Row>
@@ -81,13 +80,5 @@ function Home(){
     </Layout>
   )
 }
-
-async function getFruit () {
-  let url = 'http://localhost:3000/goods/get_all'
-  let result = await axios(url)
-  return result.data
-}
-
-console.log(getFruit())
 
 export default Home

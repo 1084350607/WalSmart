@@ -4,15 +4,18 @@ import React,{ useState} from 'react'
 import {Card,Input,Button,Spin,message} from 'antd';
 import {UserOutlined ,KeyOutlined } from '@ant-design/icons'
 import './index.scss'
-// import axiosInstance from '../../util';
-
+import axiosInstance from '../../utils/axios';
+import {withRouter} from 'react-router-dom'
 const Register = (props:any)=>{
     const [username,setUsername] = useState('')
     const [password,setPassword] = useState('')
     const [currentPassword,setCurrentPassword] = useState('')
     const [isLoading,setIsLoading] = useState(false)
-    function handleSubmit(){
-
+    async function handleSubmit(){
+        if(password!==currentPassword){
+            message.error('密码与确认密码不正确')
+            return ;
+        }
         setIsLoading(true)
         // setTimeout(()=>{setIsLoading(false)},1000)
         if(!username){
@@ -28,15 +31,15 @@ const Register = (props:any)=>{
             },500)
             return ;
         }
-        // axiosInstance.request({url:'/login',method:'POST',data:{username:username,password:password}}).then(res=>{
-        //     setIsLoading(false)
-        //     if(res.data.code===200){
-        //         localStorage.setItem('openId',res.data.openId)
-        //         props.history.push('/admin')
-        //     }else{
-        //         message.error('用户名密码错误')
-        //     }
-        // })
+        const res = await axiosInstance({ url: 'http://localhost:3000/register', method: 'POST', data: { username: username, password: password } })
+        setIsLoading(false)
+        console.log(res, 'res')
+        if (res.data.status === 'success') {
+            // localStorage.setItem('openId', res.data.openId)
+            props.history.push('/login')
+        } else {
+            message.error(res.data.msg)
+        }
     }
   
 return(
@@ -78,5 +81,5 @@ return(
     </div>
 )
 }
-export default Register
+export default withRouter(Register)
 
