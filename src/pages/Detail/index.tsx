@@ -27,6 +27,7 @@ function Home(props: any) {
     const [visible, setVisible] = useState(false);
     const [shop, setShop] = useState([] as any)
     const [goods, setGoods] = useState({} as Goods)
+    const [userInfo, setUserInfo] = useState({} as any);
     async function removeCollection(goods_id: any) {
         let res = await axiosInstance({ url: 'http://localhost:3000/goods/collect', method: 'POST', data: { goods_id } })
         if (res.status === 200 && res.data.status === 'success') {
@@ -37,16 +38,19 @@ function Home(props: any) {
     }
     useEffect(() => {
         const id = props.match.params.id
-        axios("http://localhost:3000/goods/get_goods_by_id?id=" + id).then(res => {
-
-            if (res.status === 200 && res.data.status === 'success') {
-
+        axios("http://localhost:3000/goods/get_goods_by_id?id="+id).then(res=>{
+            if(res.status === 200 && res.data.status === 'success'){
                 setGoods(res.data.data)
             } else {
                 message.error('网路请求错误')
             }
         })
     }, [])
+
+    useEffect(() => {
+        let localUserInfo = JSON.parse(localStorage.getItem('userInfo')!)||{}
+        setUserInfo(localUserInfo)
+      }, [])
     function handleCollect() {
         axios({ url: 'http://localhost:3000/goods/collect', method: 'POST', data: { goods_id: props.match.params.id } }).then(res => {
             if (res.status === 200 && res.data.status === 'success') {
@@ -69,8 +73,6 @@ function Home(props: any) {
             }
         })
         Promise.all(goodsShop).then(res => setShop(res))
-        // console.log(goodsShop)
-        // setGoods(goodsShop)
         setVisible(true);
     }
     const onClose = () => {
@@ -83,7 +85,10 @@ function Home(props: any) {
             <Layout className="page-home">
                 <header className="home_header_container">
                     <Row>
-                        <Col offset={3} className="header_item"><Link to="/login">请登录</Link></Col>
+                        {
+                            userInfo.id ? <Col offset={3} className="header_item">{`您好，${userInfo.username}`}</Col> 
+                                        : <Col offset={3} className="header_item"><Link to="/login">请登录</Link></Col>
+                        }
                         <Col className="header_item"><Link to="/register">注册</Link></Col>
                         <Col className="header_item">微信登录</Col>
                         <Col push={9} className="header_item">
@@ -185,6 +190,5 @@ async function getFruit() {
     return result.data
 }
 
-console.log(getFruit())
 
 export default withRouter(Home)

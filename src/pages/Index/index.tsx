@@ -20,11 +20,20 @@ const contentStyle = {
   lineHeight: '160px',
   textAlign: 'center',
 };
-
+interface userInfo {
+  id: number,
+  username: string,
+  password: string | null,
+  avator: string | null
+}
 function Home() {
+
+  const [userInfo, setUserInfo] = useState({} as any);
   const [fruit, setFruit] = useState([]);
   const [visible, setVisible] = useState(false);
   const [shop, setShop] = useState([] as any)
+
+
   async function removeCollection(goods_id: any) {
     let res = await axios({ url: 'http://localhost:3000/goods/collect', method: 'POST', data: { goods_id } })
     if (res.status === 200 && res.data.status === 'success') {
@@ -44,8 +53,6 @@ function Home() {
       }
     })
     Promise.all(goodsShop).then(res => setShop(res))
-    // console.log(goodsShop)
-    // setGoods(goodsShop)
     setVisible(true);
   }
   const onClose = () => {
@@ -64,6 +71,9 @@ function Home() {
     let result = getFruitInfo().then(data => {
       setFruit(data.data)
     })
+    
+    let localUserInfo = JSON.parse(localStorage.getItem('userInfo')!)||{}
+    setUserInfo(localUserInfo)
   }, [])
 
   function fruitComponents() {
@@ -73,25 +83,31 @@ function Home() {
         price={fruit.price}
         img={fruit.img}
         key={fruit.id}
+        id={fruit.id}
       />
     })
   }
-  return (
+
+  return(
     <>
-      <Layout className="page-home">
-        <header className="home_header_container">
-          <Row>
-            <Col offset={3} className="header_item"><Link to="/login">请登录</Link></Col>
-            <Col className="header_item"><Link t0="/register">注册</Link></Col>
-            <Col className="header_item">微信登录</Col>
-            <Col push={9} className="header_item">
-              <Row>
-                <Col className="header_item">手机版</Col>
-                <Col className="header_item">收藏本站</Col>
-                <Col className="header_item">我的资料</Col>
-                <Col className="header_item">我的订单</Col>
-                <Col className="header_item"  onClick={handleCar}>
-                  购物车
+    <Layout className="page-home">
+      <header className="home_header_container">
+        <Row>
+          {
+            userInfo.id ? <Col offset={3} className="header_item">{`您好，${userInfo.username}`}</Col> 
+                        : <Col offset={3} className="header_item"><Link to="/login">请登录</Link></Col>
+          }
+          
+          <Col className="header_item"><Link to="/register" className="text-grey">注册</Link></Col>
+          <Col className="header_item">微信登录</Col>
+          <Col push={9} className="header_item">
+            <Row>
+              <Col className="header_item">手机版</Col>
+              <Col className="header_item">收藏本站</Col>
+              <Col className="header_item">我的资料</Col>
+              <Col className="header_item">我的订单</Col>
+              <Col className="header_item" onClick={handleCar}>
+                购物车
               </Col>
               </Row>
             </Col>

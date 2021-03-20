@@ -29,9 +29,8 @@ const Login = (props: any) => {
         }
         const res = await axiosInstance({ url: 'http://localhost:3000/login', method: 'POST', data: { username: username, password: password } })
         setIsLoading(false)
-        console.log(res, 'res')
         if (res.data.status === 'success') {
-            // localStorage.setItem('openId', res.data.openId)
+            localStorage.setItem('userInfo', JSON.stringify(res.data.data))
             props.history.push('/')
         } else {
             message.error('用户名密码错误')

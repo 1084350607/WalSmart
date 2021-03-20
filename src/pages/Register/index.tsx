@@ -33,7 +33,6 @@ const Register = (props:any)=>{
         }
         const res = await axiosInstance({ url: 'http://localhost:3000/register', method: 'POST', data: { username: username, password: password } })
         setIsLoading(false)
-        console.log(res, 'res')
         if (res.data.status === 'success') {
             // localStorage.setItem('openId', res.data.openId)
             props.history.push('/login')
