@@ -11,7 +11,8 @@ interface goodsProp {
 function GoodsInfo (prop: goodsProp) {
   return (
     <div className="goods_info">
-      <div className>
+      <div className="info_warpper">
+        <img src={prop.img} alt="" className="info-img"/>
         <div>{prop?.img}</div>
       </div>
       <div>

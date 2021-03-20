@@ -1,5 +1,5 @@
-import Index from '../container/Index/index.tsx'
-import Login from '../container/Login/index'
+import Index from '../pages/Index/index.tsx'
+import Login from '../pages/Login/index'
 
 const routes = [
   {
@@ -9,7 +9,7 @@ const routes = [
   {
     path: "/login",
     component: Login
-  }
+  },
 ];
 
 export default routes
