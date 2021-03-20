@@ -1,5 +1,5 @@
 import Login from './pages/Login/index'
-import Index from './pages/home'
+import Index from './pages/Index'
 const routes = [
   {
     path: "/",

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {Layout, Row, Col, Menu, Carousel} from 'antd';
 import GoodsInfo from "../../components/GoodsInfo";
 import "./home.styl"
@@ -9,6 +9,7 @@ import {
 import logoUrl from '../../statics/logo.jpg'
 import fruitUrl from '../../statics/fruit/cjg.png'
 import axios from '../../utils/axios'
+import { Card } from 'antd'
 
 const { Header, Footer, Content } = Layout;
 
@@ -21,6 +22,33 @@ const contentStyle = {
 };
 
 function Home(){
+  const [fruit, setFruit] = useState([]);
+  
+
+  async function getFruitInfo () {
+    let url = 'http://localhost:3000/goods/get_all'
+    let result = await axios(url)
+   
+    return result.data
+  }
+
+  useEffect(() => {
+    let result = getFruitInfo().then(data =>{
+      setFruit(data.data)
+    })
+  }, [])
+
+  function fruitComponents() {
+    return fruit.map(fruit => {
+      console.log(fruit)
+      return <GoodsInfo 
+        title={fruit.goods_name}
+        price={fruit.price}
+        img={fruit.img}
+        key={fruit.id}
+      />
+    })
+  }
   return(
     <Layout className="page-home">
       <header className="home_header_container">
@@ -73,21 +101,20 @@ function Home(){
             </div>
           </Carousel>
         </div>
-        <div>
-          <GoodsInfo title="ts" img={fruitUrl} price={111}/>
+        <div style={{display: "flex", justifyContent: "center", marginTop: "50px"}}>
+          <div className="goods_detail_wrapper">
+            <div className="goods_detail_title">限时特价</div>
+            <div className="goods_detail_card">
+              { fruitComponents() }
+            </div>
+          </div>
         </div>
+        
       </Content>
       <Footer>ttt</Footer>
     </Layout>
   )
 }
 
-async function getFruit () {
-  let url = 'http://localhost:3000/goods/get_all'
-  let result = await axios(url)
-  return result.data
-}
-
-console.log(getFruit())
 
 export default Home
