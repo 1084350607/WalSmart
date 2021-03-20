@@ -1,6 +1,5 @@
 import React from 'react'
 import './App.css'
-import Home from './pages/home'
 // 全局导入antd
 import 'antd/dist/antd.css'
 import {
@@ -9,7 +8,6 @@ import {
   Route
 } from "react-router-dom"
 
-import routes from '../src/router'
 
 import routes from './router'
 function App() {

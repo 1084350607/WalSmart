@@ -25,7 +25,7 @@ function Home(){
       <header className="home_header_container">
         <Row>
           <Col offset={3} className="header_item"><Link to="/login">请登录</Link></Col>
-          <Col className="header_item">注册</Col>
+          <Col className="header_item"><Link to="/register">注册</Link></Col>
           <Col className="header_item">微信登录</Col>
           <Col push={9} className="header_item">
             <Row>

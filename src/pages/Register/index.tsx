@@ -6,9 +6,10 @@ import {UserOutlined ,KeyOutlined } from '@ant-design/icons'
 import './index.scss'
 // import axiosInstance from '../../util';
 
-const Login = (props:any)=>{
+const Register = (props:any)=>{
     const [username,setUsername] = useState('')
     const [password,setPassword] = useState('')
+    const [currentPassword,setCurrentPassword] = useState('')
     const [isLoading,setIsLoading] = useState(false)
     function handleSubmit(){
 
@@ -17,7 +18,7 @@ const Login = (props:any)=>{
         if(!username){
             message.error('用户名不能为空')
             setTimeout(()=>{
-                setIsLoading(false);
+                setIsLoading(false)
             },500)
             return ;
         }else if(!password){
@@ -60,6 +61,14 @@ return(
                 prefix={<KeyOutlined style={{color:'rgba(0,0,0,.25)'}}/>}
                 onChange={(e)=>{setPassword(e.target.value)}}
                 />
+                <Input.Password
+                className="ipt"
+                id="password_current"
+                size="large"
+                placeholder="Current your Password"
+                prefix={<KeyOutlined style={{color:'rgba(0,0,0,.25)'}}/>}
+                onChange={(e)=>{setCurrentPassword(e.target.value)}}
+                />
                 <br/>
                 <Button className="btn" type="primary" block size="large"  onClick={handleSubmit}>提交</Button>
             </Card>
@@ -69,5 +78,5 @@ return(
     </div>
 )
 }
-export default Login
+export default Register
 

@@ -1,5 +1,6 @@
 import Login from './pages/Login/index'
-import Index from './pages/home'
+import Index from './pages/Index/index'
+import Regiser from './pages/Register'
 const routes = [
   {
     path: "/",
@@ -8,6 +9,10 @@ const routes = [
   {
     path: "/login",
     component: Login
+  },
+  {
+    path:'/register',
+    component:Regiser
   }
 ];
 

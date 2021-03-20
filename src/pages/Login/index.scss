@@ -1,5 +1,8 @@
 .login-div{
-margin:150px auto;
+position: absolute;
+top:50%;
+left: 50%;
+transform: translateX(-50%) translateY(-50%);
 width:400px;
 .ipt{
     margin-bottom:1rem;
