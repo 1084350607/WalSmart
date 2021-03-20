@@ -114,16 +114,16 @@ function Home(props: any) {
                             </Menu.Item>
                             <Menu.Item key="fruit">
                                 鲜果
-            </Menu.Item>
+                            </Menu.Item>
                             <Menu.Item key="fresh">
                                 生鲜
-            </Menu.Item>
+                            </Menu.Item>
                             <Menu.Item key="healthy">
                                 健康咨询
-            </Menu.Item>
+                              </Menu.Item>
                             <Menu.Item key="about">
                                 关于我们
-            </Menu.Item>
+                            </Menu.Item>
                         </Menu>
                     </nav>
                     <div className="content_Carousel">
@@ -155,8 +155,8 @@ function Home(props: any) {
                         </div>
                         <div className="description"><span className="text">商品描述</span></div>
                         <div className="goods_description">
-                            阿斯顿发就阿里将受到法律阿将受到法律的卷发阿斯顿发就阿将受到法律的卷发阿斯顿发就阿将受到法律的卷发阿斯顿发就卡剋江东父老卡家阿斯顿九分裤就阿里快点放假啊阿斯顿发就啊快点放假啊了阿斯顿发就阿里；剪短发
-                </div>
+                          {goods.description}
+                        </div>
                     </div>
                 </div>
                 <Footer></Footer>

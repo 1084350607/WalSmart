@@ -76,8 +76,8 @@ function Home() {
     setUserInfo(localUserInfo)
   }, [])
 
-  function fruitComponents() {
-    return fruit.map((fruit: any) => {
+  function fruitComponents(start: number, end: number) {
+    return fruit.slice(start, end).map((fruit: any) => {
       return <GoodsInfo
         title={fruit.goods_name}
         price={fruit.price}
@@ -149,7 +149,15 @@ function Home() {
             <div className="goods_detail_wrapper">
               <div className="goods_detail_title">限时特价</div>
               <div className="goods_detail_card">
-                {fruitComponents()}
+                {fruitComponents(0, 4)}
+              </div>
+            </div>
+          </div>
+          <div style={{ display: "flex", justifyContent: "center", marginTop: "50px" }}>
+            <div className="goods_detail_wrapper">
+              <div className="goods_detail_title">限时特价</div>
+              <div className="goods_detail_card">
+                {fruitComponents(4, 8)}
               </div>
             </div>
           </div>
