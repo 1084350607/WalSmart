@@ -8,6 +8,7 @@ import {
 
 import logoUrl from '../../statics/logo.jpg'
 import fruitUrl from '../../statics/fruit/cjg.png'
+import axios from '../../utils/axios'
 
 const { Header, Footer, Content } = Layout;
 
@@ -80,5 +81,13 @@ function Home(){
     </Layout>
   )
 }
+
+async function getFruit () {
+  let url = 'http://localhost:3000/goods/get_all'
+  let result = await axios(url)
+  return result.data
+}
+
+console.log(getFruit())
 
 export default Home
