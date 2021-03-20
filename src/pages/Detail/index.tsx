@@ -26,9 +26,8 @@ function Home(props:any){
     useEffect(()=>{
         const id = props.match.params.id
         axios("http://localhost:3000/goods/get_goods_by_id?id="+id).then(res=>{
-
-            if(res.status===200 && res.data.status === 'success'){
-
+            console.log(res.data.status)
+            if(res.status === 200 && res.data.status === 'success'){
                 setGoods(res.data.data)
             }else{
                 message.error('网路请求错误')

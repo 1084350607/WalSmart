@@ -21,10 +21,17 @@ const contentStyle = {
   textAlign: 'center',
 };
 
+interface userInfo {
+  id: number,
+  username: string,
+  password: string | null,
+  avator: string | null
+}
+
 function Home(){
   const [fruit, setFruit] = useState([]);
+  const [userInfo, setUserInfo] = useState({});
   
-
   async function getFruitInfo () {
     let url = 'http://localhost:3000/goods/get_all'
     let result = await axios(url)
@@ -36,25 +43,33 @@ function Home(){
     let result = getFruitInfo().then(data =>{
       setFruit(data.data)
     })
+    
+    let localUserInfo = JSON.parse(localStorage.getItem('userInfo'))
+    setUserInfo(localUserInfo)
   }, [])
 
   function fruitComponents() {
     return fruit.map(fruit => {
-      console.log(fruit)
       return <GoodsInfo 
         title={fruit.goods_name}
         price={fruit.price}
         img={fruit.img}
         key={fruit.id}
+        id={fruit.id}
       />
     })
   }
+
   return(
     <Layout className="page-home">
       <header className="home_header_container">
         <Row>
-          <Col offset={3} className="header_item"><Link to="/login">请登录</Link></Col>
-          <Col className="header_item"><Link t0="/register">注册</Link></Col>
+          {
+            userInfo.id ? <Col offset={3} className="header_item">{`您好，${userInfo.username}`}</Col> 
+                        : <Col offset={3} className="header_item"><Link to="/login">请登录</Link></Col>
+          }
+          
+          <Col className="header_item"><Link to="/register" className="text-grey">注册</Link></Col>
           <Col className="header_item">微信登录</Col>
           <Col push={9} className="header_item">
             <Row>
