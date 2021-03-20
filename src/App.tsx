@@ -11,6 +11,7 @@ import {
 
 import routes from '../src/router'
 
+import routes from './router'
 function App() {
   return <Router>
     <Switch>
