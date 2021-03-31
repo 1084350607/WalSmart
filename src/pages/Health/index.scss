@@ -1,0 +1,29 @@
+.health-wrap{
+    width: 55vw;
+    margin: 35px auto;
+    .health-title{
+        height: 30px;
+        width: 100%;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 20px;
+        .health-text{
+            line-height: 25px;
+            border-bottom: 3px solid orange;
+            font-size: 25px;
+            font-weight: 500;
+        }
+    }
+    .health-item{
+        display: flex;
+        justify-content: space-between;
+        font-size: 20px;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #ccc;
+        line-height: 35px;
+    }
+    .health-item:hover{
+        color: orange;
+        background-color: #f7f7f7;
+        cursor: pointer;
+    }
+}

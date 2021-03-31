@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Layout, Drawer, Row, Col, Menu, Carousel, message } from 'antd';
-import GoodsInfo from "../../components/GoodsInfo";
 import Footer from "../../components/Footer";
 import "./index.scss"
 import {
     Link, withRouter
 } from "react-router-dom"
-
 import logoUrl from '../../statics/logo.jpg'
 
 import axios from '../../utils/axios'
@@ -36,16 +34,6 @@ function Home(props: any) {
             message.success('移除成功')
         }
     }
-    useEffect(() => {
-        const id = props.match.params.id
-        axios("http://localhost:3000/goods/get_goods_by_id?id=" + id).then(res => {
-            if (res.status === 200 && res.data.status === 'success') {
-                setGoods(res.data.data)
-            } else {
-                message.error('网路请求错误')
-            }
-        })
-    }, [])
 
     useEffect(() => {
         let localUserInfo = JSON.parse(localStorage.getItem('userInfo')!) || {}
@@ -139,27 +127,38 @@ function Home(props: any) {
                     <div>
                     </div>
                 </Content>
-                <div className="detail-box">
-                    <div className="detail-content">
-                        <div className="detail-title">
-                            <span className="detail-text">产品详情 </span>
-                        </div>
-                        <div className="goods-info-box">
-                            <div className="goods-image">
-                                <img src={goods.img} alt="" />
-                            </div>
-                            <div className="goods-info">
-                                <div className="goods_name">{goods.goods_name}</div>
-                                <div className="goods_count">该货物还有{goods.count}斤</div>
-                                <div className="goods_price">¥ {goods.price}</div>
-                                {goods.isCollect ? <div onClick={handleCollect} className="goods_card">取消加入购物车</div> : <div onClick={handleCollect} className="goods_card">加入购物车</div>}
-                            </div>
-                        </div>
-                        <div className="description"><span className="text">商品描述</span></div>
-                        <div className="goods_description">
-                            {goods.description}
-                        </div>
+                <div className="health-wrap">
+                    <div className="health-title">
+                        <span className="health-text">关于我们</span>
                     </div>
+                    <div className="content">
+
+
+                        关于我们
+                        沃尔玛果蔬日日鲜    采用“全产业链+全渠道”的商业模式
+                        本平台致力于将果蔬产品的精准详情信息透明化地展示在用户面前，多方位升级用户的购物体验，并在物流配送方面采取精简的送货流程，建立一车到底，农-户直接对接的模式，以保证送货的迅捷高效。
+                        沃尔玛自有品牌致力于打通相关品类的整体产业链，形成很强的研发、生产、销售能力，强大的供应链、严格的品控体系、源头合作，并依靠沃尔玛全球联合采购优势，积极打造全渠道值得信赖的自有品牌，从而形成企业的差异核心竞争能力。
+
+
+                        战略定位
+                        随着人们生活水平的提高，健康安全的进口类中高端食品消费必然会成为社会主流的消费趋势，我们将全面提升货品质量，加大产品信息传递的精准性和物流的高效性，利用顺丰速运集团资源，放眼全球优质美食，逐步实现全球产地直采，缩短供应链，让用户享受到真正0污染、安全健康、优质优价的全球新鲜蔬果。
+                        我们愿意为您想得更多、做得更多，我们希望和您一起，成为高品质生活方式的引导者和健康生活理念的传播者！
+
+
+                        全球原产地直购
+                        100%原产地直购保证
+
+                        会员权益
+                        会员升级 尊享特权
+
+                        自建物流
+                        专属物流 全程把控
+
+                        48小时退换货
+                        专属服务 为您解答
+
+                    </div>
+                    <img className="imageForUs" src="https://23476831.s21i.faiusr.com/2/1/ABUIABACGAAgu5qxggYoxdPD0gQw9AM4ygI.jpg.webp"></img>
                 </div>
                 <Footer></Footer>
             </Layout>

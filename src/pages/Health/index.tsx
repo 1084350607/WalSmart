@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Layout, Drawer, Row, Col, Menu, Carousel, message } from 'antd';
-import GoodsInfo from "../../components/GoodsInfo";
 import Footer from "../../components/Footer";
 import "./index.scss"
 import {
     Link, withRouter
 } from "react-router-dom"
-
 import logoUrl from '../../statics/logo.jpg'
 
 import axios from '../../utils/axios'
@@ -36,16 +34,6 @@ function Home(props: any) {
             message.success('移除成功')
         }
     }
-    useEffect(() => {
-        const id = props.match.params.id
-        axios("http://localhost:3000/goods/get_goods_by_id?id=" + id).then(res => {
-            if (res.status === 200 && res.data.status === 'success') {
-                setGoods(res.data.data)
-            } else {
-                message.error('网路请求错误')
-            }
-        })
-    }, [])
 
     useEffect(() => {
         let localUserInfo = JSON.parse(localStorage.getItem('userInfo')!) || {}
@@ -139,26 +127,65 @@ function Home(props: any) {
                     <div>
                     </div>
                 </Content>
-                <div className="detail-box">
-                    <div className="detail-content">
-                        <div className="detail-title">
-                            <span className="detail-text">产品详情 </span>
-                        </div>
-                        <div className="goods-info-box">
-                            <div className="goods-image">
-                                <img src={goods.img} alt="" />
-                            </div>
-                            <div className="goods-info">
-                                <div className="goods_name">{goods.goods_name}</div>
-                                <div className="goods_count">该货物还有{goods.count}斤</div>
-                                <div className="goods_price">¥ {goods.price}</div>
-                                {goods.isCollect ? <div onClick={handleCollect} className="goods_card">取消加入购物车</div> : <div onClick={handleCollect} className="goods_card">加入购物车</div>}
-                            </div>
-                        </div>
-                        <div className="description"><span className="text">商品描述</span></div>
-                        <div className="goods_description">
-                            {goods.description}
-                        </div>
+                <div className="health-wrap">
+                    <div className="health-title">
+                        <span className="health-text">蔬果资讯</span>
+                    </div>
+                    <div className="health-item">
+                        <div className="item-text">春天养生，不妨多吃5种菜：西红柿、菠菜、香椿、黄瓜</div>
+                        <div className="item-date">2021-03-13</div>
+                    </div>
+                    <div className="health-item">
+                        <div className="item-text">给老年人买什么吃的好 | 给老人买什么水果吃比较好</div>
+                        <div className="item-date">2021-03-13</div>
+                    </div>
+                    <div className="health-item">
+                        <div className="item-text">五类人群不宜吃柚子</div>
+                        <div className="item-date">2021-03-13</div>
+                    </div>
+                    <div className="health-item">
+                        <div className="item-text">新鲜柠檬怎么吃 | 吃新鲜柠檬的好处与功效</div>
+                        <div className="item-date">2021-03-13</div>
+                    </div>
+                    <div className="health-item">
+                        <div className="item-text">黑葡萄怎么吃比较健康</div>
+                        <div className="item-date">2021-03-13</div>
+                    </div>
+                    <div className="health-item">
+                        <div className="item-text">枸杞该怎么喝才可以补身体</div>
+                        <div className="item-date">2021-03-13</div>
+                    </div>
+                    <div className="health-item">
+                        <div className="item-text">如何才可以烧掉头发</div>
+                        <div className="item-date">2021-03-13</div>
+                    </div>
+                    <div className="health-item">
+                        <div className="item-text">健康科普小知识</div>
+                        <div className="item-date">2021-03-13</div>
+                    </div>
+                    <div className="health-item">
+                        <div className="item-text">小葵花妈妈课堂开课啦</div>
+                        <div className="item-date">2021-03-13</div>
+                    </div>
+                    <div className="health-item">
+                        <div className="item-text">双黄连口服液</div>
+                        <div className="item-date">2021-03-13</div>
+                    </div>
+                    <div className="health-item">
+                        <div className="item-text">怎么才可以顿顿吃肉</div>
+                        <div className="item-date">2021-03-13</div>
+                    </div>
+                    <div className="health-item">
+                        <div className="item-text">猕猴桃的吃法怎么才健康</div>
+                        <div className="item-date">2021-03-13</div>
+                    </div>
+                    <div className="health-item">
+                        <div className="item-text">土豆的健康吃法</div>
+                        <div className="item-date">2021-03-13</div>
+                    </div>
+                    <div className="health-item">
+                        <div className="item-text">地瓜的拔丝方法</div>
+                        <div className="item-date">2021-03-13</div>
                     </div>
                 </div>
                 <Footer></Footer>
